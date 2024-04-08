@@ -9,7 +9,7 @@ Before running this scraper, check whether your environment satisfied dependence
 ## Version 1.0: searching for protein subcellular loaction & secreted protein selection.
 
 Version 1.0 accepts 3 arguments: 
-### 1. Input file: Input directory of your ID file, which is a column list of protein Uniprot IDs, csv format recommended.
+### 1. Input file: Input directory of your ID file, which is a column list of protein Uniprot IDs, csv or xlsx format recommended.
 
     (e.g. D:\Users\work_dir\test.csv)
    
