@@ -2,7 +2,7 @@
 
 This script is a scraper to scrape protein informations from Uniprot database.
 
-Usage: directly running this script with Python3 (dependences: pandas, requests, BeautifulSoup, urllib3)
+Usage: directly running this script with Python3 (dependences: pandas, requests, BeautifulSoup & lxml parser, urllib3)
 
 Before running this scraper, check whether your environment satisfied dependences.
 
