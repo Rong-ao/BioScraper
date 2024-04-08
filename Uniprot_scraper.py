@@ -1,8 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-import urllib3
-import openpyxl
+import time
 
 print('If this is the first time to use this program on your computer, I recommend you to check whether package "requests", "BeautifulSoup" and "pandas" were installed.\n\
       If not, run these commands to install:\n\
@@ -11,7 +7,16 @@ print('If this is the first time to use this program on your computer, I recomme
       pip install lxml\n\
       pip install pandas\n\
       pip install urllib3\n\n')
-print('Author: Rongao Kou, Westlake University (If any problem, please contact with kourongao@westlake.edu.cn)\n\n')
+print('Author: Rongao Kou, Westlake University (If any problem, please check https://github.com/Rong-ao/Uniprot-scraper)\n\n')
+print('If there are not requested packages above on your computer, it will close automatically in 15 seconds.')
+time.sleep(15)
+
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import urllib3
+import openpyxl
+
 
 
 # Written for writer: Uniprot provides specific API for batch search, check link below
@@ -77,3 +82,4 @@ filepath = input('Please input your Uniprot ID list file directory (csv format r
 output = input('Please input your output file directory (with output name you want, e.g. D:\\Users\\work_dir\\out_test):')
 secret = input('Do you want to select secreted proteins as an independent file? (Y/N): ')
 main(filepath, output, secret)
+
