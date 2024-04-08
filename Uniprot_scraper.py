@@ -2,11 +2,13 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import urllib3
+import openpyxl
 
 print('If this is the first time to use this program on your computer, I recommend you to check whether package "requests", "BeautifulSoup" and "pandas" were installed.\n\
       If not, run these commands to install:\n\
       pip install requests\n\
       pip install beautifulsoup4\n\
+      pip install lxml\n\
       pip install pandas\n\
       pip install urllib3\n\n')
 print('Author: Rongao Kou, Westlake University (If any problem, please contact with kourongao@westlake.edu.cn)\n\n')
@@ -28,13 +30,12 @@ def get_protein_info(pro_id):
         if r.status_code == 200:
             soup = BeautifulSoup(r.content, 'xml')
     except:
+        soup = BeautifulSoup("", 'xml')
         print('No page found')
-
     return soup
-
-
+        
+    
 def info_scraper(soup):
-    print(type(soup))
     if soup.find('comment', {'type': 'subcellular location'}) is None:
         loc = ['Not found']
     else:
@@ -45,7 +46,10 @@ def info_scraper(soup):
 
 
 def main(in_dir, out_dir, secret_protein='N'):
-    df = pd.read_csv(in_dir, header=None)
+    if in_dir.endswith('xlsx') or in_dir.endswith('xls'):
+        df = pd.read_excel(io=in_dir, header=None, index_col=None)
+    elif in_dir.endswith('csv'):
+        df = pd.read_csv(in_dir, header=None, index_col=None)
     print(df)
     df.columns = ['Uniprot ID']
     l = []
@@ -69,7 +73,7 @@ def main(in_dir, out_dir, secret_protein='N'):
     input('Press anything to exit')
 
 
-filepath = input('Please input your Uniprot ID list file directory (csv format recommended): ')
-output = input('Please input your output file directory (with output name you want): ')
+filepath = input('Please input your Uniprot ID list file directory (csv format recommended, e.g. D:\\Users\\work_dir\\test.csv): ')
+output = input('Please input your output file directory (with output name you want, e.g. D:\\Users\\work_dir\\out_test):')
 secret = input('Do you want to select secreted proteins as an independent file? (Y/N): ')
 main(filepath, output, secret)
