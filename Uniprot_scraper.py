@@ -69,7 +69,7 @@ def main(in_dir, out_dir, secret_protein='N'):
     s = pd.Series(l, name='Subcellular location')
     df = pd.concat([df, s], axis=1)
     # df.columns = ['Uniprot ID', 'Subcellular location']
-    df.to_csv(output + '_sub_loc.tsv', sep='\t')
+    df.to_csv(out_dir + '_sub_loc.tsv', sep='\t')
     print('Your file has been stored in "{}"'.format(out_dir + '_sub_loc.tsv'))
     if secret_protein == 'Y':
         df_secret = df[df['Subcellular location'].str.contains('Secreted')]
