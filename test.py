@@ -62,10 +62,8 @@ def info_scraper(HMDB):
 def integrate(in_dir, out_dir, sheet_number=0):
     if in_dir.endswith('xlsx') or in_dir.endswith('xls'):
         df = pd.read_excel(io=in_dir, header=0, index_col=None, sheet_name=sheet_number)
-        file_type = 'excel'
     elif in_dir.endswith('csv'):
         df = pd.read_csv(in_dir, header=0, index_col=None)
-        file_type = 'csv'
     print(df)
     l = []
     link = []
@@ -98,19 +96,21 @@ def integrate(in_dir, out_dir, sheet_number=0):
     df = pd.concat([df, s, s2], axis=1)
     print(df)
     df.to_csv(out_dir + '.csv', sep='\t', encoding='utf-8-sig')
-    
 
-    return
+    return 
 
 def main():
     filepath = input('Please input your list file directory of metabolites (csv or xlsx format recommended, e.g. D:\\Users\\work_dir\\test.csv): ')
     output = input('Please input your output file directory (with output name you want, e.g. D:\\Users\\work_dir\\out_test):')
     if filepath.endswith('xlsx') or filepath.endswith('xls'):
-        sheet = input('Which sheet do you want to search for? (enter the number or sheet name, e.g. 0 OR Sheet1, or press Enter for all sheets)')
+        sheet = input('Which sheet do you want to search for? You can:\n\
+                      Enter the number or sheet name, e.g. 0 OR Sheet1 for the first sheet\n\
+                      Or press Enter for all sheets\n')
         if sheet == '\n':
-            sheet = None
-            
-            df = pd.read_csv(output + '.csv', header=0, index_col=None, sep='\t')
+            excel = pd.ExcelFile(filepath)
+            for i in excel.sheet_names:
+                integrate(filepath, output, i)
+                df = pd.read_csv(output + '.csv', header=0, index_col=None, sep='\t')
             with pd.ExcelWriter(output + '.xlsx') as writer:
                 df.to_excel(writer, sheet_name='Sheet1', index=False)
             os.remove(output + '.csv')
