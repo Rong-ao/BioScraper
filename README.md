@@ -9,7 +9,13 @@ Running: directly running this script with Python3 (dependences: pandas, request
 Before running scraper, check whether your environment satisfied dependences.
 
 # Uniprot Scraper
-Version 1.0: searching for protein subcellular loaction & secreted protein selection.
+**Version 1.1:** searching for protein subcellular loaction & secreted protein selection from Uniprot.
+
+**Update:** 
+
+For some proteins, **there will be not available Uniprot subcellular location annotation** in database. 
+
+**Gene Ontology (Cellular Component)** terms are added into search targets to solving this issue. You will see two columns of subcellular location in final table, corresponding to Uniprot annotation and GO annotation.
 
 ### Uniprot Scraper accepts 3 arguments: 
 ### 1. Input file: Input directory of your ID file, which is a column list of protein Uniprot IDs, csv or xlsx format recommended.
@@ -23,7 +29,34 @@ Version 1.0: searching for protein subcellular loaction & secreted protein selec
    
 ### 3. Secreted protein selection: 
 Accept Uppercase `Y` or `N`, corresponding to select secreted protein as a seperated file `xxx_secreted.csv`, `xxx` is same as output name in 2
-   
+
+### Example
+You can check Uniprot ID csv or xlsx file in `Example_data/Uniprot_scraper_example`. Here is an example to running it:
+
+1. When showing: 
+
+`Please input your Uniprot ID list file directory (csv format recommended, e.g. D:\Users\work_dir\test.csv): `
+
+Enter directory of input file Metabolite_searching.xlsx on your computer.
+For example, if I put it under the file folder `C:\User\Desktop\`, I should enter:
+
+`C:\User\Desktop\Protein-20240315.csv`
+
+2. When showing:
+
+`Please input your output file directory (with output name you want, e.g. D:\Users\work_dir\out_test): `
+
+For example, if I want to put result under the file folder `C:\User\Desktop\Result\` and name it as `Result_HMDB`, I should enter:
+
+`C:\User\Desktop\Result\20240315`
+
+3. When showing:
+
+`Do you want to select secreted proteins as an independent file? (Y/N):`
+
+For example, if I want to select all secreted protein or proteins located in extracellular space, enter `Y`.
+Finally, you will get the same output file as `20240315_sub_loc.csv` and `20240315_secreted.csv` in `Example_data/Uniprot_scraper_example`. 
+
 # HMDB Scraper
 Version 1.0: searching for description of metabolite in HMDB according to CAS ID.
 ### HMDB Scraper accepts 3 arguments: 
