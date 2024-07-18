@@ -104,6 +104,6 @@ Finally, you will get the same output file as `Result_HMDB.xlsx` in `Example_dat
 
 **Thanks Yusong Zhang from Shandong University for asking me for develop these tools.**
 
-For more requirements and information worth, I will keep to update this scraper.
+For more requirements and information worth, I will keep to update these scrapers.
 
 If any issue, please contact with kourongao@westlake.edu.cn
