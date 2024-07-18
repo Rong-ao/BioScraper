@@ -125,7 +125,10 @@ def main():
             if sheet == '':
                 sheet_list = excel.sheet_names
             else:
-                sheet_list = [sheet]
+                if sheet.isdigit():
+                    sheet_list = [excel.sheet_names[sheet-1]]
+                else:
+                    sheet_list = [sheet]
             for i in sheet_list:
                 print("****************** Proceeding Excel Sheet: {}... ******************".format(i))
                 df = integrate(filepath, i)
